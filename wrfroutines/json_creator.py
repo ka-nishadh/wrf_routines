@@ -1,13 +1,16 @@
+import sys
+sys.path.append('..')
+
 import datetime
 import numpy as np
 import xarray as xr
 import json
 import os
 
-from helper_jc import get_precep_array
-from helper_jc import for_windspeed
-from helper_jc import for_winddirection
-from helper_jc import get_lightning_cape_array
+from wrfroutines.helper_jc import get_precep_array
+from wrfroutines.helper_jc import for_windspeed
+from wrfroutines.helper_jc import for_winddirection
+from wrfroutines.helper_jc import get_lightning_cape_array
 
 
 

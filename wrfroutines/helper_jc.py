@@ -1,3 +1,5 @@
+import sys
+sys.path.append('..')
 import datetime
 
 from shapely.geometry import Polygon
