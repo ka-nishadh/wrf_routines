@@ -6,13 +6,35 @@ import numpy as np
 import xarray as xr
 import json
 import os
+import boto3
 
 from wrfroutines.helper_jc import get_precep_array
 from wrfroutines.helper_jc import for_windspeed
 from wrfroutines.helper_jc import for_winddirection
 from wrfroutines.helper_jc import get_lightning_cape_array
 
-
+def s3folder_upload(local_directory,bucket,remote_directory):
+    s3_client = boto3.client('s3')
+    for root, dirs, files in os.walk(local_directory):
+        for filename in files:
+            # construct the full local path
+            local_path = os.path.join(root, filename)
+            # construct the full Dropbox path
+            relative_path = os.path.relpath(local_path, local_directory)
+            linuxrelPath = relative_path.replace(os.sep, '/')
+            s3_path = os.path.join(remote_directory, linuxrelPath)
+            # relative_path = os.path.relpath(os.path.join(root, filename))
+            print('Searching "%s" in "%s"' % (s3_path, bucket))
+            try:
+                s3_client.head_object(Bucket=bucket, Key=s3_path)
+                print("Path found on S3! Skipping %s..." % s3_path)
+                # try:
+                    # client.delete_object(Bucket=bucket, Key=s3_path)
+                # except:
+                    # print "Unable to delete %s..." % s3_path
+            except:
+                print("Uploading %s..." % s3_path)
+                s3_client.upload_file(local_path, bucket, s3_path)
 
 def get_date_array(ds):
     fcdate=str(ds.attrs['SDATE'])
