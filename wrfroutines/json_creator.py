@@ -129,7 +129,6 @@ def bin_create(params,var_array,var_nctime,timestep,db):
     metadata['hour']=hour
     metadata['color']={'red':153, 'green':0,'blue':0}
     metadata['label']=params.label
-    print(metadata)
     jsonfilename=binfilename.split('.')[0]+'_'+metadata['region_name']
     json_dump(metadata,binfolder,jsonfilename)
     os.remove(binfullname)
@@ -153,7 +152,6 @@ def bin_create_light(params,var_array,var_nctime,timestep,db):
     metadata['color']={'red':153,'green':0,'blue':0}
     metadata['label']=params.label
     metadata['data_array']=bindata_xr.tolist()
-    print(metadata)
     jsonfilename=binfilename.split('.')[0]+'_'+metadata['region_name']
     json_dump(metadata,binfolder,jsonfilename)
     os.remove(binfullname)    
@@ -177,7 +175,6 @@ def bin_create_wind(params,var_array,var_nctime,timestep,db):
     metadata['hour']=hour
     metadata['color']={'red':153,'green':0,'blue':0}
     metadata['label']=params.label
-    print(metadata)
     jsonfilename=binfilename.split('.')[0]+'_'+metadata['region_name']
     json_dump(metadata,binfolder,jsonfilename)
     os.remove(binfullname)

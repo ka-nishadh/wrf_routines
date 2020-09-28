@@ -134,7 +134,7 @@ def for_windspeed(ds,timestep):
     v_pdata2=v_pdata1* units.meter / units.second
     windspeed=metpcalc.wind_speed(u_pdata2,v_pdata2)
     nctime=get_date_array(ds)
-    return windspeed,nctime
+    return windspeed.magnitude,nctime
 
 
 def for_windmap(ds,timestep):
@@ -164,7 +164,7 @@ def for_winddirection(ds,timestep):
     v_pdata2=v_pdata1* units.meter / units.second
     winddirection=metpcalc.wind_direction(u_pdata2,v_pdata2, convention='to')
     nctime=get_date_array(ds)
-    return winddirection,nctime
+    return winddirection.magnitude,nctime
 
 
 
